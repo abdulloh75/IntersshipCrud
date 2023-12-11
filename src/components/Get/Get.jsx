@@ -6,8 +6,11 @@ import Edit from "../Edit/Edit";
 import './Get.css'
 
 function Get() {
+  // api get for state
   const [users, setUsers] = useState();
 
+
+  // Get api for function
   const Kategoriya = async () => {
     try {
       const response = await axios.get('users/');
@@ -21,6 +24,7 @@ function Get() {
     Kategoriya();
   }
 
+  // Always refresh
   useEffect(() => {
     Kategoriya();
   }, []);

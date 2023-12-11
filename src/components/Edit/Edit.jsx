@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
+
+// Modal style
 const customStyles = {
   content: {
     top: '50%',
@@ -17,6 +19,7 @@ const customStyles = {
 
 function Edit({ handleClick, id }) {
   const { handleSubmit, register } = useForm();
+  // Modal open state
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);

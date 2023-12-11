@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './Post.css'
-import { toast } from "react-toastify";
 import { Button, Modal } from 'antd';
 import { useState } from 'react';
 
 function Post({ handleClick }) {
   const { handleSubmit, register } = useForm();
+  // open to Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -18,10 +18,8 @@ function Post({ handleClick }) {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const handleCloseEditModal = () => {
-    setShowEditModal(false);
-    setEditingId(null);
-  };
+
+  // send to api request
   const onSubmit = async (formData) => {
     const formDataObject = new FormData();
     formDataObject.append("first_name", formData.first_name);
@@ -41,22 +39,18 @@ function Post({ handleClick }) {
         return;
       }
       handleClick();
-      toast.success("Users qo'shildi", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
     } catch (error) {
       console.error("An error occurred while making the request:", error);
-      toast.error("Users qo'shilmadi", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
     }
   };
 
   return (
     <>
+      {/* Button for open Modal */}
       <Button type="primary" style={{marginTop: '20px'}} onClick={showModal}>
         Users qo'shish
       </Button>
+      {/* Modal add to users */}
       <Modal centered width={380} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <form className='form_post' onSubmit={handleSubmit(onSubmit)}>
           <input className='first_name' {...register("first_name")} placeholder="Enter first name" />

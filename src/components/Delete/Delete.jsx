@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 function Delete({ id, handleClick }) {
+
+  // delete to user
   const deleteuser = async () => {
     try {
       const response = await axios.delete(
@@ -17,6 +19,7 @@ function Delete({ id, handleClick }) {
   };
 
   return (
+    // delete user button
     <button style={{ padding: "5px 10px", cursor: 'pointer', backgroundColor: 'red', color: '#fff', border: 'none', borderRadius: '4px'}} onClick={deleteuser}>Delete</button>
   )
 }
