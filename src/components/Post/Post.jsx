@@ -33,12 +33,8 @@ function Post({ handleClick }) {
         'users/',
         formDataObject,
       );
-
-      if (!response.data.success) {
-        console.log("Error happened");
-        return;
-      }
-      handleClick();
+      handleClick()
+      setIsModalOpen(false);
     } catch (error) {
       console.error("An error occurred while making the request:", error);
     }
@@ -59,6 +55,7 @@ function Post({ handleClick }) {
           <input className='phone_number'  {...register("phone_number")} placeholder="Enter phone number" />
           <input className='location'  {...register("location")} placeholder="Enter location" />
           <button className='btn' type="submit">Add</button>
+
         </form>
       </Modal>
     </>

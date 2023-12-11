@@ -23,9 +23,9 @@ function Get() {
     }
   };
 
-  // function handleClick() {
-  //   Kategoriya();
-  // }
+  function handleClick() {
+    Kategoriya();
+  }
 
   // Always refresh
   useEffect(() => {
@@ -73,6 +73,7 @@ function Get() {
       ) : (
           <p></p>
       )}
+      <Post handleClick={handleClick}/>
     </>
   );
 }
