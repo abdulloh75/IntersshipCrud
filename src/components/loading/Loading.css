@@ -1,0 +1,15 @@
+/* LESS Vars */
+:root {
+  --primaryClr: lime;
+  --pacman-size: 70px;
+}
+
+.sudo {
+  width: 100%;
+  text-align: center;
+  padding-top: 20pc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

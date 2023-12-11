@@ -17,8 +17,9 @@ const customStyles = {
   },
 };
 
-function Edit({ handleClick, id }) {
-  const { handleSubmit, register } = useForm();
+function Edit({ handleClick }) {
+  const [inputValue,setInputvalue] =useState(handleClick)
+  const { handleSubmit } = useForm();
   // Modal open state
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
@@ -29,14 +30,14 @@ function Edit({ handleClick, id }) {
     setIsOpen(false);
   }
 
-  const OnEdit = async (formDataUpdate) => {
+  const OnEdit = async () => {
     // Update to information send to api
     const formDataObjectUpdate = new FormData();
-    formDataObjectUpdate.append("first_name", formDataUpdate.first_name);
-    formDataObjectUpdate.append("last_name", formDataUpdate.last_name);
-    formDataObjectUpdate.append("age", formDataUpdate.age);
-    formDataObjectUpdate.append("phone_number", formDataUpdate.phone_number);
-    formDataObjectUpdate.append("location", formDataUpdate.location);
+    formDataObjectUpdate.append("first_name", inputValue.first_name);
+    formDataObjectUpdate.append("last_name", inputValue.last_name);
+    formDataObjectUpdate.append("age", inputValue.age);
+    formDataObjectUpdate.append("phone_number", inputValue.phone_number);
+    formDataObjectUpdate.append("location", inputValue.location);
 
     try {
       await axios.put(
@@ -45,7 +46,6 @@ function Edit({ handleClick, id }) {
       );
 
       closeModal();
-      handleClick();
     } catch (error) {
       console.error('Error happened', error);
     }
@@ -65,15 +65,29 @@ function Edit({ handleClick, id }) {
        {/* // Edit */}
         <form className='form_post' onSubmit={handleSubmit(OnEdit)}>
           {/* // first_name edit send */}
-          <input className='first_name' {...register("first_name")} placeholder="Enter first name" />
+          <input value={inputValue.first_name}
+           onChange={(e) => setInputvalue({...inputValue, first_name:e.target.value})}
+            className='first_name'  placeholder="Enter first name" />
           {/* // last_name edit send */}
-          <input className='last_name'  {...register("last_name")} placeholder="Enter last_name" />
+          <input className='last_name'
+          value={inputValue.last_name}
+          onChange={(e) => setInputvalue({ ...inputValue, last_name: e.target.value })}
+          placeholder="Enter last_name" />
           {/* // age edit send */}
-          <input className='age'  {...register("age")} placeholder="Enter age" />
+          <input className='age'
+          value={inputValue.age}
+          onChange={(e) => setInputvalue({ ...inputValue, age: e.target.value })}
+          placeholder="Enter age" />
           {/* // phone_number edit send */}
-          <input className='phone_number'  {...register("phone_number")} placeholder="Enter phone_number" />
+          <input className='phone_number'
+          value={inputValue.phone_number}
+          onChange={(e) => setInputvalue({ ...inputValue, phone_number: e.target.value })}
+          placeholder="Enter phone_number" />
           {/* // location edit send */}
-          <input className='location'  {...register("location")} placeholder="Enter location" />
+          <input className='location'
+          value={inputValue.first_name}
+          onChange={(e) => setInputvalue({ ...inputValue, location: e.target.value })}
+          placeholder="Enter location" />
           {/* // button edit send */}
           <button className='btn' type="submit">EDIT</button>
         </form>

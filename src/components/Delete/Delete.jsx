@@ -12,7 +12,6 @@ function Delete({ id, handleClick }) {
       if (!response.status === 204) {
         console.log('Error happened');
       }
-      handleClick();
     } catch (error) {
       console.error('Error happened', error);
     }
