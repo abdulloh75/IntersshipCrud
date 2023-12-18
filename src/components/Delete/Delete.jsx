@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Delete({ id, handleClick }) {
 
@@ -12,8 +13,15 @@ function Delete({ id, handleClick }) {
       if (!response.status === 204) {
         console.log('Error happened');
       }
+      handleClick()
+      toast.success("User o'chirildi", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
     } catch (error) {
       console.error('Error happened', error);
+      toast.error("User o'chirilmadi", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 

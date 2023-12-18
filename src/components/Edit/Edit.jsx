@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 
 // Modal style
@@ -16,7 +17,6 @@ const customStyles = {
     width: '350px'
   },
 };
-
 function Edit({ handleClick }) {
   const [inputValue,setInputvalue] =useState(handleClick)
   const { handleSubmit } = useForm();
@@ -31,7 +31,6 @@ function Edit({ handleClick }) {
   }
 
   const OnEdit = async () => {
-    // Update to information send to api
     const formDataObjectUpdate = new FormData();
     formDataObjectUpdate.append("first_name", inputValue.first_name);
     formDataObjectUpdate.append("last_name", inputValue.last_name);
@@ -44,10 +43,15 @@ function Edit({ handleClick }) {
         `users/${id}/`,
         formDataObjectUpdate,
       );
-
+      toast.success("User tahrirlandi", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       closeModal();
     } catch (error) {
       console.error('Error happened', error);
+      toast.success("User tahrirlanmadi", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   }
 
