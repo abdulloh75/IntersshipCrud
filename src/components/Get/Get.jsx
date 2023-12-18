@@ -34,13 +34,6 @@ function Get() {
 
   return (
     <>
-      {loading && (
-              <div className="fixed inset-0 z-50 overflow-y-auto">
-                <div className="flex bg-opacity-75 backdrop-filter backdrop-blur-lg md:w-[100%] md:h-full items-center justify-center">
-                  <Loading/>
-                </div>
-              </div>
-      )}
       {users && users.length > 0 ? (
       <table>
         <thead>
@@ -73,7 +66,14 @@ function Get() {
       ) : (
           <p></p>
       )}
-      <Post handleClick={handleClick}/>
+      <Post handleClick={handleClick} />
+      {loading && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex bg-opacity-75 backdrop-filter backdrop-blur-lg md:w-[100%] md:h-full items-center justify-center">
+            <Loading />
+          </div>
+        </div>
+      )}
     </>
   );
 }
